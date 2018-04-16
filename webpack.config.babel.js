@@ -22,6 +22,7 @@ const jsDevOutput = {
 const jsOutputLocation = process.env.NODE_ENV === 'production' ? jsProdOutput : jsDevOutput;
 
 module.exports = {
+  mode: 'development',
   context: resolve(__dirname, 'src'),
   entry: [
     './index.jsx',

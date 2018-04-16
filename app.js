@@ -1,24 +1,23 @@
 require('babel-register');
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
+const appConfig = require('./config.js');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const bodyParser= require('body-parser');
-const mongoose = require('mongoose')
+const express = require('express');
+const expressSession = require('express-session')({
+  secret: appConfig.expressSession.secret,
+  resave: false,
+  saveUninitialized: true,
+});
+const favicon = require('serve-favicon');
+const LocalStrategy = require('passport-local').Strategy;
+const logger = require('morgan');
+const mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy
-
-
-const index = require('./routes/index');
-const api = require('./routes/api/index');
-const users = require('./routes/api/users');
-
+const path = require('path');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.babel');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-
 
 const app = express();
 mongoose.connect('mongodb://localhost/musiclist')
