@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "start-prod": "SET NODE_ENV=production&& node ./bin/www",
     "start-dev": "SET NODE_ENV=development&& node ./bin/www",
+    "start-dev-mac": "NODE_ENV=development node ./bin/www",
     "build-prod": "SET NODE_ENV=production&&webpack -p --config webpack.config.js"
   },
   "dependencies": {
