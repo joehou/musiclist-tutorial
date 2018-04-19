@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import ChangePasswordPage from './account/ChangePasswordPageContainer';
 import ErrorBox from './shared/ErrorBoxContainer'
 import HeaderContainer from './shared/HeaderContainer';
 import HomePage from './home/HomePageContainer';
@@ -19,6 +20,7 @@ export default function Template(props) {
     <Router>
       <div className="wrapper">
         <ErrorBox/>
+	<Route path="/account/change-password/:hash" component={ChangePasswordPage} />
         <HeaderContainer authentication={authentication} />
         <Route exact path="/account/register" component={RegisterPage} />
         <Route exact path="/account/reset-password" component={ResetPasswordPage} />
