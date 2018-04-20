@@ -25,6 +25,7 @@ module.exports = {
   mode: 'development',
   context: resolve(__dirname, 'src'),
   entry: [
+    'babel-polyfill',
     './index.jsx',
   ],
   output: jsOutputLocation,
@@ -37,6 +38,17 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components|public\/)/,
         loader: 'babel-loader',
+	query: {
+	  presets: ['env']
+	}
+      },
+      {
+        test: /\.js?$/,
+        exclude: /(node_modules|bower_components|public\/)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['env'],
+        },
       },
       {
         test: /\.css$/,

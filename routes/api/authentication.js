@@ -106,11 +106,42 @@ router.post('/saveresethash', async (req, res) => {
         }
       });
     });
-  } catch (err) {
-    // if the user doesn't exist, error out
-    result = res.send(JSON.stringify({ error: 'Something went wrong while attempting to reset your password. Please Try again' }));
+  }catch (err) {
+    result = res.send(JSON.stringify({ error: 'Cannot connect to dashboard' }));
   }
   return result;
 });
+// POST to savepassword
+router.post('/savepassword', async (req, res) => {
+  let result;
+  try {
+    // look up user in the DB based on reset hash
+    const query = User.findOne({ passwordReset: req.body.hash });
+    const foundUser = await query.exec();
 
+    // If the user exists save their new password
+    if (foundUser) {
+      // user passport's built-in password set method
+      foundUser.setPassword(req.body.password, (err) => {
+        if (err) {
+          result = res.send(JSON.stringify({ error: 'Password could not be saved. Please try again' }));
+        } else {
+          // once the password's set, save the user object
+          foundUser.save((error) => {
+            if (error) {
+              result = res.send(JSON.stringify({ error: 'Password could not be saved. Please try again' }));
+            } else {
+              // Send a success message
+              result = res.send(JSON.stringify({ success: true }));
+            }
+          });
+        }
+      });
+    }
+  } catch (err) {
+    // if the hash didn't bring up a user, error out
+    result = res.send(JSON.stringify({ error: 'Reset hash not found in database' }));
+  }
+  return result;
+});
 module.exports=router
