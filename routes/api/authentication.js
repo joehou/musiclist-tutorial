@@ -114,11 +114,12 @@ router.post('/saveresethash', async (req, res) => {
 // POST to savepassword
 router.post('/savepassword', async (req, res) => {
   let result;
+
   try {
     // look up user in the DB based on reset hash
     const query = User.findOne({ passwordReset: req.body.hash });
     const foundUser = await query.exec();
-
+    console.log(req.body.hash)
     // If the user exists save their new password
     if (foundUser) {
       // user passport's built-in password set method
@@ -137,6 +138,8 @@ router.post('/savepassword', async (req, res) => {
           });
         }
       });
+    }else{
+       	result = res.send(JSON.stringify({ error: 'Password could not be saved. Please try again' }));
     }
   } catch (err) {
     // if the hash didn't bring up a user, error out
