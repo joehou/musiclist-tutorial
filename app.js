@@ -20,8 +20,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
 mongoose.connect('mongodb://localhost/musiclist')
-const authentication = require('./routes/api/authentication');
 
+const authentication = require('./routes/api/authentication');
+const albums = require('./routes/api/albums');
 const api = require('./routes/api/index')
 const users = require('./routes/api/users')
 const index = require('./routes/index')
@@ -63,6 +64,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use('/api', api);
 app.use('/api/users', users);
+app.use('/api/albums', albums);
 app.use('/api/authentication', authentication);
 app.use('/*', index);
 
