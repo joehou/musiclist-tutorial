@@ -14,12 +14,12 @@ export const registrationSuccessViewed = () => ({type: 'AUTHENTICATION_REGISTRAT
 export const passwordResetClear = () => ({type: 'AUTHENTICATION_PASSWORD_RESET_CLEAR'});
 export const passwordResetHashCreated = () => ({type: 'AUTHENTICATION_PASSWORD_RESET_HASH_CREATED'});
 export const passwordResetHashFailure = error => ({type: 'AUTHENTICATION_PASSWORD_RESET_HASH_FAILURE', error})
+export const passwordSaveClear = () => ({ type: 'AUTHENTICATION_PASSWORD_SAVE_CLEAR' });	
 export const passwordSaveFailure = error => ({ type: 'AUTHENTICATION_PASSWORD_SAVE_FAILURE', error });
 export const passwordSaveSuccess = () => ({ type: 'AUTHENTICATION_PASSWORD_SAVE_SUCCESS' });
 export const sessionCheckFailure = () => ({type: 'AUTHENTICATION_SESSION_CHECK_FAILURE'});
 export const sessionCheckSuccess = json => ({type: 'AUTHENTICATION_SESSION_CHECK_SUCCESS', json});
-
-// Log User in
+// Log User in 
 export function logUserIn(userData) {
   return async (dispatch) => {
     dispatch(incrementProgress());
