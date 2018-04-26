@@ -2,11 +2,16 @@ const appConfig = require('./config.js');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const expressSession = require('express-session')({
-  secret: appConfig.expressSession.secret,
+const expressSession = require('express-session');
+
+// Express Session
+const sessionValues = {
+  cookie: {},
+  name: 'sessionId',
   resave: false,
   saveUninitialized: true,
-});
+  secret: appConfig.expressSession.secret,
+};
 const favicon = require('serve-favicon');
 const LocalStrategy = require('passport-local').Strategy;
 const logger = require('morgan');
@@ -37,11 +42,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('express-session')({
-  secret: 'any random string can go here',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(expressSession(sessionValues));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -74,6 +76,8 @@ app.use('/*', index);
 // Configure Passport
 const User = require('./models/user');
 passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
 
 passport.deserializeUser(User.deserializeUser());
 

@@ -84,6 +84,7 @@ export function searchAlbums(searchText) {
     )
     .then((response) => {
       if (response.status === 200) {
+        console.log(response.json)
         return response.json();
       }
       return null;

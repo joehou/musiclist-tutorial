@@ -12,12 +12,14 @@ export class AlbumsPageContainer extends React.Component {
   }
 
   render() {
-    const { addAlbumFunction, albums, searchAlbumsFunction } = this.props;
+    const { addAlbumFunction, albums, searchAlbumsFunction, user } = this.props;
 
     return (
       <AlbumsPage
         albums={albums}
+        addAlbumFunction={addAlbumFunction}
         searchAlbumsFunction={searchAlbumsFunction}
+        user={user}
       />
     );
   }
@@ -29,7 +31,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   dispatch,
 }, dispatch);
 
-const mapStateToProps = state => ({ albums: state.albums });
+const mapStateToProps = state => ({ albums: state.albums, user: state.user });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlbumsPageContainer);
 

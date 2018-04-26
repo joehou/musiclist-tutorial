@@ -22,6 +22,8 @@ export const sessionCheckSuccess = json => ({type: 'AUTHENTICATION_SESSION_CHECK
 // Log User in 
 export function logUserIn(userData) {
   return async (dispatch) => {
+
+    dispatch(clearError());
     dispatch(incrementProgress());
 
     // register login attemp
@@ -49,7 +51,6 @@ export function logUserIn(userData) {
     }).then((json) => {
       if (json) {
         dispatch(loginSuccess(json));
-        dispatch(clearError());
       } else {
         dispatch(loginFailure(new Error('Email or Password Incorrect. Please Try again.')));
       }
