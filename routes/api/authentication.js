@@ -20,7 +20,6 @@ router.post('/login', async (req,res)=>{
   // if they exist, they'll have a username, so add that to our body
   if (foundUser) { req.body.username = foundUser.username; }
   passport.authenticate('local')(req,res,() =>{
-    console.log(req)
     if (req.user){
       return res.send(JSON.stringify(req.user))
     }
