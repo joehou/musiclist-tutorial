@@ -104,7 +104,6 @@ export function createHash(email) {
 
 export function checkSession() {
   return async (dispatch) => {
-    const {sessionCheckFailureAction, sessionCheckSuccessAction} = this.props;
     // contact the API
     await fetch(
       // where to contact

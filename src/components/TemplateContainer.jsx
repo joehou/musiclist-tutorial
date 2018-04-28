@@ -12,7 +12,8 @@ class TemplateContainer extends Component{
 
   componentWillMount() {
     // Before the component mounts, check for an existing user session
-    this.checkUserSession = this.checkUserSession.bind(this);
+    this.checkUserSession();
+
   }
 
   checkUserSession(){
