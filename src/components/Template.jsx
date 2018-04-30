@@ -7,6 +7,7 @@ import ErrorBox from './shared/ErrorBoxContainer'
 import HeaderContainer from './shared/HeaderContainer';
 import HomePage from './home/HomePageContainer';
 import ProfilePage from './account/ProfilePage'
+import ListPage from './list/ListPageContainer';
 import RegisterPage from './account/RegisterPageContainer'
 import RegistrationSuccessPage from './account/RegistrationSuccessPageContainer'
 import LoginPage from './account/LoginPageContainer'
@@ -27,6 +28,7 @@ export default function Template(props) {
         <Route exact path="/account/reset-password" component={ResetPasswordPage} />
         <Route exact path="/artists" component={ArtistsPage} />
         <Route exact path="/albums" component={AlbumsPage} />
+        <Route path="/list/:username" component={ListPage} />
         <section className="page-content container-fluid">
           <div className="loader-wrapper" style={progress > 0 ? { display: 'block' } : { display: 'none' }}>
           <div className="loader-box">
