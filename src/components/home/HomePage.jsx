@@ -1,24 +1,23 @@
 import React from 'react';
 import Sidebar from '../shared/Sidebar';
-import {Button} from 'reactstrap'
+import { Link } from 'react-router-dom';
 
 export default function HomePage(props) {
 
-  const { decrementFunction, incrementFunction } = props;
-
-  const showAlert = () =>{
-    alert('You clicked the button')
-  }
-
+   const { latestAlbum } = props;
   return (
       <div className="row">
         <div className="col-sm-12 col-md-8">
-          <div className="col-sm-12 col-md-8">
-            <Button onClick={incrementFunction}>Increment</Button>
-            <Button onClick={decrementFunction}>Decrement</Button>
-          </div>
+          <h1>Welcome to MusicList</h1>
+          <p>
+            This is a react tutorial sample app
+          </p>
+          <ul>
+            <li><h2><Link to="/artists">Search Artists</Link></h2></li>
+            <li><h2><Link to="/albums">Search Albums</Link></h2></li>
+          </ul>
         </div>
-        <Sidebar />
-        </div>
+      <Sidebar latestAlbum={latestAlbum} />
+    </div>
   );
 }

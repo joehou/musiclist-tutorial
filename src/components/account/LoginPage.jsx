@@ -9,7 +9,6 @@ export default class LoginPage extends Component {
     super(props)
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -24,13 +23,6 @@ export default class LoginPage extends Component {
   // update state as email value changes
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
-  }
-
-  // catch enter clicks
-  handleKeyPress(target) {
-    if (target.charCode === 13) {
-      this.compileFormData();
-    }
   }
 
   // update state as password value changes

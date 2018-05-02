@@ -9,7 +9,6 @@ export default class ProfilePage extends React.Component {
     // bound functions
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     // component state
     this.state = {
       email: '',
@@ -25,11 +24,6 @@ export default class ProfilePage extends React.Component {
     const { registerFunction } = this.props;
     const formData = this.state;
     registerFunction(formData);
-  }
-
-  // Handle input changes
-  handleInputChange(e) {
-    this.setState({ [e.currentTarget.id]: e.target.value });
   }
 
   // catch enter clicks
